@@ -1,0 +1,3 @@
+1: Edit .zsh_shouse_prompt to show username (maybe more than just the un) in red when opperating as root
+
+2: Clean up .zshrc for stuff not needed

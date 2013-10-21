@@ -41,6 +41,9 @@ case $TERM in xterm|rxvt-unicode|screen) TERM="$TERM-256color";
     export TERM;
 esac;
 
+# Set dircolors so ls --color=auto matches the solarized-dark theme
+# https://github.com/seebi/dircolors-solarized
+eval `dircolors ~/.dir_colors`
 
 REPORTTIME=60       # Report time statistics for progs that take more than a minute to run
 WATCH=notme         # Report any login/logout of other users

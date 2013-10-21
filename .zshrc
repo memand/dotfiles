@@ -80,6 +80,7 @@ fi
 alias ls='ls -F --color'
 alias la='ls -A'
 alias ll='ls -lh'
+alias lla='ll -A'
 alias lls='ll -Sr'
 
 alias less='less -imJMW'

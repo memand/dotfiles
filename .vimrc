@@ -26,7 +26,7 @@ syntax on
 " Enable Pathogen by Tim Pope
 execute pathogen#infect()
 
-" Enable solarized theme
+" Enable theme
 set background=dark " dark | light "
 colorscheme solarized 
 
@@ -139,9 +139,10 @@ set pastetoggle=<F11>
 
 " Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+set tabstop=4 "Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
+set softtabstop=4 "Number of spaces that a <Tab> counts for while performing editing.
+set expandtab "In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.
@@ -158,9 +159,118 @@ set expandtab
 " which is the default
 map Y y$
 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
-
 
 "------------------------------------------------------------
+"
+" Powerline setup
+set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim/
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set laststatus=2
+
+
+"-------------------------------------------------------------
+"
+"Leader stuff
+" Change <leader> key.
+let mapleader = ","
+
+function! Djangomode()
+    if &ft == 'python'            " FIXME
+    echom 'python was here'       " FIXME
+    set ft=python.django          " FIXME
+    elseif &ft == 'python.django' " FIXME
+    echom 'pd was here'           " FIXME
+    set ft=python                 " FIXME
+    elseif &ft == 'html'
+        echom 'html was here'
+        set ft=htmldjango.html
+    elseif &ft == 'htmldjango.html'
+        echom 'hd was here'
+        set ft=html
+    endif
+endfunction
+
+
+" Command re-mappings
+cmap dma ! ./manage.py 
+cmap WQ wq
+cmap Wq wq
+cmap W w
+cmap Q q
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <leader><space> :noh<cr>
+nnoremap <Leader>t :NERDTreeToggle<CR>
+nnoremap <Leader>e :Errors<CR>
+nnoremap <Leader>s :SyntasticCheck<CR>
+nnoremap <Leader>E :SyntasticReset<CR>
+nnoremap <Leader>f :CommandT<CR>
+nnoremap <Leader>d :call Djangomode()<CR>
+
+" Save when losing focus.
+au FocusLost * :wa
+
+" This makes Vim show invisible characters with the same characters that
+" TextMate uses.
+set list
+
+" Makes Vim handle long lines correctly:
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+set colorcolumn=85
+
+
+" Searching / moving.
+"fix regex.
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase "Make Vim deal with case-sensitive search intelligently.
+set smartcase "Make Vim deal with case-sensitive search intelligently.
+set gdefault "Applies substitutions globally on lines.
+set incsearch "Work together to highlight search results (as you type).
+set showmatch "Work together to highlight search results (as you type).
+set hlsearch "Work together to highlight search results (as you type).
+set mouse=a "Enable mouse usage (all modes).
+
+" Source the vimrc file after saving it
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+" Color of line numbers.
+hi LineNr ctermfg=darkgrey ctermbg=black
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Save when losing focus.
+au FocusLost * :wa
+
+"}}}
+" Syntastic{{{
+" On by default, turn it off for html
+let g:syntastic_mode_map = { 'mode': 'active',
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': ['html'] }
+
+" Set sytastic prompt
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
+" Better :sign interface symbols
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
+
+let g:syntastic_check_on_open=1
+let g:syntastic_aggregate_errors=1
+
+" Use flake8
+let g:syntastic_python_checkers = ['flake8', 'pep8', 'python']
+let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801"'
+"}}}
+" Command-T {{{
+

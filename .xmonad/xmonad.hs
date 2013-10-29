@@ -1,22 +1,22 @@
 import XMonad
 
+import System.IO
+
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders  
 import XMonad.Layout.PerWorkspace
 
+import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog  
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.SetWMName
 import XMonad.Hooks.EwmhDesktops
 
 import Graphics.X11.ExtraTypes.XF86 
 
-import XMonad.Util.EZConfig  
 import XMonad.Util.Run
-
-import System.IO
+import XMonad.Util.EZConfig  
 
 defaultLayouts = tiled ||| Mirror tiled ||| Full
     where

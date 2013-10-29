@@ -26,6 +26,9 @@ syntax on
 " Enable Pathogen by Tim Pope
 execute pathogen#infect()
 
+" Enable solarized theme
+set background=dark " dark | light "
+colorscheme solarized 
 
 "------------------------------------------------------------
 " Must have options {{{1

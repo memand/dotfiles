@@ -18,6 +18,8 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
 
                     , Run Memory [ "-t", "Mem: <usedratio>%"] 10
 
+                    , Run GMail "noajohan" "somethingelse" ["-t", "Mail: <count>"] 3000
+
                     , Run Network "enp3s0" [ "-L", "0", "-H", "32"
                                            , "--normal", "green"
                                            , "--high", "red"

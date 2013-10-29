@@ -56,6 +56,10 @@ export PAGER="less $LESS"
 export MANPAGER=$PAGER
 export GIT_PAGER=$PAGER
 
+# set up for virtualenv for python
+export WORKON_HOME="$HOME/.virtualenvs"
+source /usr/bin/virtualenvwrapper.sh
+
 # Silence Wine debugging output (why isn't this a default?)
 export WINEDEBUG=-all
 

@@ -92,7 +92,8 @@ alias cls='clear' # note: ctrl-L under zsh does something similar
 alias df='df -h'
 
 alias ts='chmod 644 /home/memand/Downloads/*.torrent;\
-          scp /home/memand/Downloads/*.torrent etcph:../torrent/watch;\
+          chown :torrent /home/memand/Downloads/*.torrent;\
+          scp /home/memand/Downloads/*.torrent etcph:../downloads/watch;\
           rm /home/memand/Downloads/*.torrent'
 
 alias mf='sudo modprobe -r psmouse; sleep 5; sudo modprobe psmouse'

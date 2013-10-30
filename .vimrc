@@ -206,6 +206,12 @@ nnoremap <Leader>s :SyntasticCheck<CR>
 nnoremap <Leader>E :SyntasticReset<CR>
 nnoremap <Leader>f :CommandT<CR>
 nnoremap <Leader>d :call Djangomode()<CR>
+"" YouCompleteMe
+let g:ycm_key_list_previous_completion=['<Up>']
+
+"" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsListSnippets="<c-s-tab>"
 
 " Save when losing focus.
 au FocusLost * :wa

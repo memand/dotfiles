@@ -17,6 +17,9 @@ xsetroot -cursor_name left_ptr
 # set Danish keyboard layout
 setxkbmap dk
 
+# set capslock to be escape
+setxkbmap -option caps:escape
+
 # start syndaemon and make it monitor for keyboard acivity and disable toutchpad tapping accordingly
 syndaemon -t -k -i 0.5 -d &
 
